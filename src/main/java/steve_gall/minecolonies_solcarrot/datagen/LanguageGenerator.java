@@ -1,15 +1,15 @@
 package steve_gall.minecolonies_solcarrot.datagen;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 import steve_gall.minecolonies_solcarrot.core.common.MineColoniesSoL;
 import steve_gall.minecolonies_solcarrot.core.common.init.ModItems;
 
 public class LanguageGenerator extends LanguageProvider
 {
-	public LanguageGenerator(DataGenerator gen, String locale)
+	public LanguageGenerator(PackOutput output, String locale)
 	{
-		super(gen, MineColoniesSoL.MOD_ID, locale);
+		super(output, MineColoniesSoL.MOD_ID, locale);
 	}
 
 	@Override

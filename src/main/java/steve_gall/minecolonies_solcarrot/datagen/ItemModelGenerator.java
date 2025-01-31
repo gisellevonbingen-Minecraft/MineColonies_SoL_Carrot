@@ -1,6 +1,6 @@
 package steve_gall.minecolonies_solcarrot.datagen;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -10,9 +10,9 @@ import steve_gall.minecolonies_solcarrot.core.common.init.ModItems;
 
 public class ItemModelGenerator extends ItemModelProvider
 {
-	public ItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper)
+	public ItemModelGenerator(PackOutput output, ExistingFileHelper existingFileHelper)
 	{
-		super(generator, MineColoniesSoL.MOD_ID, existingFileHelper);
+		super(output, MineColoniesSoL.MOD_ID, existingFileHelper);
 	}
 
 	@Override

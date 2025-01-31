@@ -3,9 +3,12 @@ package steve_gall.minecolonies_solcarrot.core.common;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.minecolonies.api.creativetab.ModCreativeTabs;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -34,11 +37,21 @@ public class MineColoniesSoL
 
 		var fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModItems.REGISTER.register(fml_bus);
+		fml_bus.addListener(this::onBuildCreativeModeTabContents);
 
 		var forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.addListener((RegisterCommandsEvent e) -> ModCommands.register(e.getDispatcher()));
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> MineColoniesSoLClient::new);
+	}
+
+	private void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent e)
+	{
+		if (e.getTab() == ModCreativeTabs.GENERAL.get())
+		{
+			e.accept(ModItems.FOOD_NOMICON);
+		}
+
 	}
 
 	public static ResourceLocation rl(String path)

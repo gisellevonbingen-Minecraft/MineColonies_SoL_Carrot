@@ -30,5 +30,6 @@
     "recipes": [
       "minecolonies_solcarrot:food_nomicon"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

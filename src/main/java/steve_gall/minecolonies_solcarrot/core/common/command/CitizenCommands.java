@@ -44,7 +44,7 @@ public class CitizenCommands
 			return literal("full", true, (context, citizen) ->
 			{
 				citizen.setSaturation(ICitizenData.MAX_SATURATION);
-				context.getSource().sendSuccess(Component.literal("Done"), true);
+				context.getSource().sendSuccess(() -> Component.literal("Done"), true);
 				return 1;
 			});
 		}
@@ -55,7 +55,7 @@ public class CitizenCommands
 			{
 				citizen.setSaturation(0.0D);
 				citizen.setJustAte(false);
-				context.getSource().sendSuccess(Component.literal("Done"), true);
+				context.getSource().sendSuccess(() -> Component.literal("Done"), true);
 				return 1;
 			});
 		}
@@ -118,7 +118,7 @@ public class CitizenCommands
 	{
 		if (needPermission && !context.getSource().hasPermission(Commands.LEVEL_GAMEMASTERS))
 		{
-			context.getSource().sendSuccess(Component.translatable(CommandTranslationConstants.COMMAND_REQUIRES_OP), true);
+			context.getSource().sendSuccess(() -> Component.translatable(CommandTranslationConstants.COMMAND_REQUIRES_OP), true);
 			return 0;
 		}
 
@@ -127,13 +127,13 @@ public class CitizenCommands
 
 		if (colony == null)
 		{
-			context.getSource().sendSuccess(Component.translatable(CommandTranslationConstants.COMMAND_COLONY_ID_NOT_FOUND, colonyID), true);
+			context.getSource().sendSuccess(() -> Component.translatable(CommandTranslationConstants.COMMAND_COLONY_ID_NOT_FOUND, colonyID), true);
 			return 0;
 		}
 
 		if (!context.getSource().hasPermission(Commands.LEVEL_OWNERS))
 		{
-			context.getSource().sendSuccess(Component.translatable(CommandTranslationConstants.COMMAND_DISABLED_IN_CONFIG), true);
+			context.getSource().sendSuccess(() -> Component.translatable(CommandTranslationConstants.COMMAND_DISABLED_IN_CONFIG), true);
 			return 0;
 		}
 
@@ -141,7 +141,7 @@ public class CitizenCommands
 
 		if (citizenData == null)
 		{
-			context.getSource().sendSuccess(Component.translatable(CommandTranslationConstants.COMMAND_CITIZEN_NOT_FOUND), true);
+			context.getSource().sendSuccess(() -> Component.translatable(CommandTranslationConstants.COMMAND_CITIZEN_NOT_FOUND), true);
 			return 0;
 		}
 
