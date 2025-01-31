@@ -1,0 +1,76 @@
+<window xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	pause="true" lightbox="true"
+	xsi:noNamespaceSchemaLocation="file:../../../../../api/java/com/minecolonies/blockui/blockui.xsd">
+
+	<button id="citizensMode" size="80 24" pos="0 5"
+		source="minecolonies:textures/gui/builderhut/builder_button_medium.png"
+		label="$(minecolonies_sol.gui.citizens_mode)" textcolor="black"
+		wrap="true" />
+	<button id="foodsMode" size="80 24" pos="85 5"
+		source="minecolonies:textures/gui/builderhut/builder_button_medium.png"
+		label="$(minecolonies_sol.gui.foods_mode)" textcolor="black"
+		wrap="true" />
+
+	<input id="input" size="135 17" pos="1 31" maxlength="25" />
+
+	<button id="exceptCompleted" size="20 17" pos="140 31" label="X"
+		source="minecolonies:textures/gui/builderhut/builder_button_small.png"
+		textcolor="black" shadow="false" />
+	<text id="exceptCompletedText" size="200 17" pos="161 31"
+		label="$(minecolonies_sol.gui.except_completed_citizen)"
+		textcolor="white" wrap="true" />
+
+	<view size="100% 183" pos="0 52">
+		<view size="135 100%" pos="0 0">
+			<text id="citizensText" size="100% 20" pos="0 0"
+				label="$(minecolonies_sol.gui.citizens)" textalign="BOTTOM_MIDDLE"
+				wrap="true" />
+			<box size="100% 163" pos="0 22" linewidth="1">
+				<list id="citizens" size="100% 100%" pos="0 0">
+					<box size="100% 40" linewidth="1">
+						<text id="citizenName" size="124 20" pos="2 2" color="white"
+							textalign="MIDDLE_LEFT" wrap="true" />
+						<text id="citizenStatus1" size="124 10" pos="2 21"
+							color="white" wrap="true" />
+						<text id="citizenStatus2" size="124 10" pos="2 30"
+							color="white" wrap="true" />
+					</box>
+				</list>
+			</box>
+		</view>
+
+		<view size="135 100%" pos="140 0">
+			<text id="eatenFoodsText" size="100% 20" pos="0 0"
+				label="$(minecolonies_sol.gui.eaten_foods)"
+				textalign="BOTTOM_MIDDLE" wrap="true" />
+			<box size="100% 163" pos="0 22" linewidth="1">
+				<list id="eatenFoods" size="100% 100%" pos="0 0">
+					<box size="100% 30" linewidth="1">
+						<itemicon id="foodIcon" size="16 16" pos="2 3" />
+						<text id="foodName" size="106 20" pos="20 2" color="white"
+							wrap="true" />
+						<text id="foodStatus" size="124 10" pos="2 20"
+							color="white" wrap="true" />
+					</box>
+				</list>
+			</box>
+		</view>
+
+		<view size="135 100%" pos="280 0">
+			<text id="notEatenFoodsText" size="100% 20" pos="0 0"
+				label="$(minecolonies_sol.gui.not_eaten_foods)"
+				textalign="BOTTOM_MIDDLE" wrap="true" />
+			<box size="100% 163" pos="0 22" linewidth="1">
+				<list id="notEatenFoods" size="100% 100%" pos="0 0">
+					<box size="100% 30" linewidth="1">
+						<itemicon id="foodIcon" size="16 16" pos="2 3" />
+						<text id="foodName" size="106 20" pos="20 2" color="white"
+							wrap="true" />
+						<text id="foodStatus" size="124 10" pos="2 20"
+							color="white" wrap="true" />
+					</box>
+				</list>
+			</box>
+		</view>
+	</view>
+</window>
