@@ -1,7 +1,7 @@
 package steve_gall.minecolonies_solcarrot.datagen;
 
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 import steve_gall.minecolonies_solcarrot.core.common.MineColoniesSoL;
 import steve_gall.minecolonies_solcarrot.core.common.init.ModItems;
 

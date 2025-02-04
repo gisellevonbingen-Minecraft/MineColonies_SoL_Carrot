@@ -1,20 +1,20 @@
 package steve_gall.minecolonies_solcarrot.core.common.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class MineColoniesSoLConfigCommon
 {
 	public static final MineColoniesSoLConfigCommon INSTANCE;
-	public static final ForgeConfigSpec SPEC;
+	public static final ModConfigSpec SPEC;
 
 	static
 	{
-		var common = new ForgeConfigSpec.Builder().configure(MineColoniesSoLConfigCommon::new);
+		var common = new ModConfigSpec.Builder().configure(MineColoniesSoLConfigCommon::new);
 		INSTANCE = common.getLeft();
 		SPEC = common.getRight();
 	}
 
-	public MineColoniesSoLConfigCommon(ForgeConfigSpec.Builder builder)
+	public MineColoniesSoLConfigCommon(ModConfigSpec.Builder builder)
 	{
 
 	}

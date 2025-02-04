@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.minecolonies.core.colony.CitizenDataView;
 
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import steve_gall.minecolonies_solcarrot.api.common.colony.ICitizenFoodDataView;
 import steve_gall.minecolonies_solcarrot.core.common.entity.CitizenFoodDataView;
 import steve_gall.minecolonies_solcarrot.core.common.entity.ICitizenDataViewExtensions;
@@ -21,7 +21,7 @@ public abstract class CitizenDataViewMixin implements ICitizenDataViewExtensions
 	private final CitizenFoodDataView minecolonies_sol$food = new CitizenFoodDataView(this);
 
 	@Inject(method = "deserialize", remap = false, at = @At(value = "TAIL"), cancellable = false)
-	private void deserialize(FriendlyByteBuf buf, CallbackInfo ci)
+	private void deserialize(RegistryFriendlyByteBuf buf, CallbackInfo ci)
 	{
 		this.minecolonies_sol$food.deserialize(buf);
 	}

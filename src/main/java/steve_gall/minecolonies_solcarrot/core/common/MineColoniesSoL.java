@@ -6,15 +6,13 @@ import org.apache.logging.log4j.Logger;
 import com.minecolonies.api.creativetab.ModCreativeTabs;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.javafmlmod.FMLModContainer;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import steve_gall.minecolonies_solcarrot.core.client.MineColoniesSoLClient;
 import steve_gall.minecolonies_solcarrot.core.common.command.ModCommands;
 import steve_gall.minecolonies_solcarrot.core.common.config.MineColoniesSoLConfigClient;
@@ -28,35 +26,38 @@ public class MineColoniesSoL
 	public static final String MOD_ID = "minecolonies_solcarrot";
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	public MineColoniesSoL()
+	public MineColoniesSoL(FMLModContainer modContainer, Dist dist)
 	{
-		var modLoadingContext = ModLoadingContext.get();
-		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, MineColoniesSoLConfigClient.SPEC);
-		modLoadingContext.registerConfig(ModConfig.Type.COMMON, MineColoniesSoLConfigCommon.SPEC);
-		modLoadingContext.registerConfig(ModConfig.Type.SERVER, MineColoniesSoLConfigServer.SPEC);
+		modContainer.registerConfig(ModConfig.Type.CLIENT, MineColoniesSoLConfigClient.SPEC);
+		modContainer.registerConfig(ModConfig.Type.COMMON, MineColoniesSoLConfigCommon.SPEC);
+		modContainer.registerConfig(ModConfig.Type.SERVER, MineColoniesSoLConfigServer.SPEC);
 
-		var fml_bus = FMLJavaModLoadingContext.get().getModEventBus();
+		var fml_bus = modContainer.getEventBus();
 		ModItems.REGISTER.register(fml_bus);
 		fml_bus.addListener(this::onBuildCreativeModeTabContents);
 
-		var forge_bus = MinecraftForge.EVENT_BUS;
+		var forge_bus = NeoForge.EVENT_BUS;
 		forge_bus.addListener((RegisterCommandsEvent e) -> ModCommands.register(e.getDispatcher()));
 
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> MineColoniesSoLClient::new);
+		if (dist.isClient())
+		{
+			new MineColoniesSoLClient(modContainer);
+		}
+
 	}
 
 	private void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent e)
 	{
 		if (e.getTab() == ModCreativeTabs.GENERAL.get())
 		{
-			e.accept(ModItems.FOOD_NOMICON);
+			e.accept(ModItems.FOOD_NOMICON.get());
 		}
 
 	}
 
 	public static ResourceLocation rl(String path)
 	{
-		return new ResourceLocation(MOD_ID, path);
+		return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
 	}
 
 }

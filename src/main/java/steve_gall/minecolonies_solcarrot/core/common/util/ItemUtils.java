@@ -3,13 +3,13 @@ package steve_gall.minecolonies_solcarrot.core.common.util;
 import java.util.Collection;
 import java.util.function.IntFunction;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemUtils
 {
@@ -21,7 +21,7 @@ public class ItemUtils
 		for (var i = 0; i < size; i++)
 		{
 			var id = buffer.readResourceLocation();
-			collection.add(ForgeRegistries.ITEMS.getValue(id));
+			collection.add(BuiltInRegistries.ITEM.get(id));
 		}
 
 		return collection;
@@ -34,7 +34,7 @@ public class ItemUtils
 
 		for (var item : collection)
 		{
-			var id = ForgeRegistries.ITEMS.getKey(item);
+			var id = BuiltInRegistries.ITEM.getKey(item);
 			buffer.writeResourceLocation(id);
 		}
 
@@ -53,7 +53,7 @@ public class ItemUtils
 				continue;
 			}
 
-			var item = ForgeRegistries.ITEMS.getValue(id);
+			var item = BuiltInRegistries.ITEM.get(id);
 
 			if (item == null || item == Items.AIR)
 			{
@@ -71,7 +71,7 @@ public class ItemUtils
 
 		for (var item : collection)
 		{
-			var id = ForgeRegistries.ITEMS.getKey(item);
+			var id = BuiltInRegistries.ITEM.getKey(item);
 
 			if (id == null)
 			{

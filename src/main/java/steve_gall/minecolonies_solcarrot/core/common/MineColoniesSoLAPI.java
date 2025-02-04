@@ -11,7 +11,7 @@ import com.minecolonies.api.colony.ICitizenDataView;
 import com.minecolonies.api.util.ItemStackUtils;
 
 import net.minecraft.world.item.Item;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 import steve_gall.minecolonies_solcarrot.api.common.IMineColoniesSoLAPI;
 import steve_gall.minecolonies_solcarrot.api.common.colony.ICitizenFoodData;
 import steve_gall.minecolonies_solcarrot.api.common.colony.ICitizenFoodDataView;

@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:book"
-            ]
+            "items": "minecraft:book"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_book",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_book"
     ]
   ],
   "rewards": {
     "recipes": [
       "minecolonies_solcarrot:food_nomicon"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -4,21 +4,21 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
 public class MineColoniesSoLConfigServer
 {
 	public static final MineColoniesSoLConfigServer INSTANCE;
-	public static final ForgeConfigSpec SPEC;
+	public static final ModConfigSpec SPEC;
 
 	static
 	{
-		var common = new ForgeConfigSpec.Builder().configure(MineColoniesSoLConfigServer::new);
+		var common = new ModConfigSpec.Builder().configure(MineColoniesSoLConfigServer::new);
 		INSTANCE = common.getLeft();
 		SPEC = common.getRight();
 	}
@@ -31,19 +31,19 @@ public class MineColoniesSoLConfigServer
 	public final ConfigValue<List<? extends String>> whitelist;
 	public final IntValue minimumNutrition;
 
-	public MineColoniesSoLConfigServer(ForgeConfigSpec.Builder builder)
+	public MineColoniesSoLConfigServer(ModConfigSpec.Builder builder)
 	{
 		builder.comment("Follows 'Spice of Life: Carrot Edition' config, if it installed.");
 		this.followCE = builder.define("followCE", true);
 
 		builder.push("milestones");
 		this.heartsPerMilestones = builder.defineInRange("heartsPerMilestones", 2, 0, 1000);
-		this.milestones = builder.defineList("milestones", () -> Lists.newArrayList(5, 10, 15, 20, 25), e -> e instanceof Integer);
+		this.milestones = builder.defineList("milestones", () -> Lists.newArrayList(5, 10, 15, 20, 25), () -> 0, e -> e instanceof Integer);
 		builder.pop();
 
 		builder.push("filtering");
-		this.blacklist = builder.defineList("blacklist", () -> Lists.newArrayList(), e -> e instanceof String);
-		this.whitelist = builder.defineList("whitelist", () -> Lists.newArrayList(), e -> e instanceof String);
+		this.blacklist = builder.defineListAllowEmpty("blacklist", () -> Lists.newArrayList(), () -> "", e -> e instanceof String);
+		this.whitelist = builder.defineListAllowEmpty("whitelist", () -> Lists.newArrayList(), () -> "", e -> e instanceof String);
 		this.minimumNutrition = builder.defineInRange("minimumNutrition", 1, 0, 1000);
 		builder.pop();
 	}
@@ -51,12 +51,12 @@ public class MineColoniesSoLConfigServer
 	public boolean shouldCount(Item item)
 	{
 		var food = item.getDefaultInstance().getFoodProperties(null);
-		return food.getNutrition() >= this.minimumNutrition.get() && this.isAllowed(item);
+		return food.nutrition() >= this.minimumNutrition.get() && this.isAllowed(item);
 	}
 
 	public boolean isAllowed(Item item)
 	{
-		var id = ForgeRegistries.ITEMS.getKey(item);
+		var id = BuiltInRegistries.ITEM.getKey(item);
 
 		if (id == null)
 		{

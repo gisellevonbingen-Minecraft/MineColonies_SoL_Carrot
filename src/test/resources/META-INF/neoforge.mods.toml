@@ -2,6 +2,9 @@ modLoader="javafml"
 loaderVersion="[0,)"
 license="TEST"
 
+[[mixins]]
+config="test.mixin.json"
+
 [[mods]]
     modId="testmod"
     version="0"
@@ -9,28 +12,28 @@ license="TEST"
 
 [[dependencies.testmod]]
     modId="minecraft"
-    mandatory=true
+    type="required"
     versionRange="[0.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.testmod]]
-    modId="forge"
-    mandatory=true
+    modId="neoforge"
+    type="required"
     versionRange="[0.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.testmod]]
     modId="minecolonies"
-    mandatory=true
+    type="required"
     versionRange="[0.0,)"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.testmod]]
     modId="minecolonies_solcarrot"
-    mandatory=true
+    type="required"
     versionRange="[0.0,)"
     ordering="AFTER"
     side="BOTH"

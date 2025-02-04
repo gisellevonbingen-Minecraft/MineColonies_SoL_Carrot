@@ -2,21 +2,22 @@ package steve_gall.minecolonies_solcarrot.core.common.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableSet;
 import com.minecolonies.api.colony.ICitizenData;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.util.INBTSerializable;
+import net.neoforged.neoforge.common.util.INBTSerializable;
 import steve_gall.minecolonies_solcarrot.api.common.IMineColoniesSoLAPI;
 import steve_gall.minecolonies_solcarrot.api.common.colony.ICitizenFoodData;
 import steve_gall.minecolonies_solcarrot.core.common.MineColoniesSoL;
@@ -24,7 +25,7 @@ import steve_gall.minecolonies_solcarrot.core.common.util.ItemUtils;
 
 public class CitizenFoodData implements ICitizenFoodData, INBTSerializable<CompoundTag>
 {
-	private static final UUID MAX_HEALTH_MODIFIER_ID = UUID.fromString("31091b53-759d-4a00-a064-4e53ac235e2b");
+	private static final ResourceLocation MAX_HEALTH_MODIFIER_ID = MineColoniesSoL.rl("bonus_health");
 
 	private static final String TAG_EATENS = "eatens";
 
@@ -129,12 +130,12 @@ public class CitizenFoodData implements ICitizenFoodData, INBTSerializable<Compo
 		var bonusHealth = IMineColoniesSoLAPI.instance().getBonusHealth(this.milestone());
 		var oldModifier = entity.getAttribute(Attributes.MAX_HEALTH).getModifier(MAX_HEALTH_MODIFIER_ID);
 
-		if (oldModifier != null && oldModifier.getAmount() == bonusHealth)
+		if (oldModifier != null && oldModifier.amount() == bonusHealth)
 		{
 			return false;
 		}
 
-		var newModifier = new AttributeModifier(MAX_HEALTH_MODIFIER_ID, MineColoniesSoL.MOD_ID, bonusHealth, AttributeModifier.Operation.ADDITION);
+		var newModifier = new AttributeModifier(MAX_HEALTH_MODIFIER_ID, bonusHealth, AttributeModifier.Operation.ADD_VALUE);
 		var oldMax = entity.getMaxHealth();
 
 		if (oldModifier != null)
@@ -151,7 +152,7 @@ public class CitizenFoodData implements ICitizenFoodData, INBTSerializable<Compo
 	}
 
 	@Override
-	public void deserializeNBT(CompoundTag compound)
+	public void deserializeNBT(HolderLookup.Provider provider, CompoundTag compound)
 	{
 		ItemUtils.deserializeItems(this.eatens, compound.getList(TAG_EATENS, Tag.TAG_STRING));
 
@@ -159,7 +160,7 @@ public class CitizenFoodData implements ICitizenFoodData, INBTSerializable<Compo
 	}
 
 	@Override
-	public CompoundTag serializeNBT()
+	public CompoundTag serializeNBT(HolderLookup.Provider provider)
 	{
 		var compound = new CompoundTag();
 		compound.put(TAG_EATENS, ItemUtils.serializeItems(this.eatens));

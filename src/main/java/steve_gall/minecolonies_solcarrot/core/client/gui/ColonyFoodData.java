@@ -13,9 +13,9 @@ import com.google.common.collect.ImmutableSet;
 import com.minecolonies.api.colony.ICitizenDataView;
 import com.minecolonies.api.colony.IColonyView;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.ForgeRegistries;
 import steve_gall.minecolonies_solcarrot.api.common.IMineColoniesSoLAPI;
 import steve_gall.minecolonies_solcarrot.api.common.colony.ICitizenFoodDataView;
 
@@ -33,7 +33,7 @@ public class ColonyFoodData
 	{
 		this.colony = colony;
 		var allFoods = new ArrayList<ItemStack>();
-		ForgeRegistries.ITEMS.getValues().stream().filter(IMineColoniesSoLAPI.instance()::shouldCount).map(ItemStack::new).forEach(allFoods::add);
+		BuiltInRegistries.ITEM.stream().filter(IMineColoniesSoLAPI.instance()::shouldCount).map(ItemStack::new).forEach(allFoods::add);
 		allFoods.forEach(i -> this.nameCache.put(i.getItem(), i.getHoverName().getString()));
 		allFoods.sort(this::compareFood);
 		this.allFoods = ImmutableList.copyOf(allFoods);
