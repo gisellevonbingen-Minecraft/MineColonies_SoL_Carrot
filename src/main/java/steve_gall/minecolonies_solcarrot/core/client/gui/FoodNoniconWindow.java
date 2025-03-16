@@ -50,7 +50,7 @@ public abstract class FoodNoniconWindow extends AbstractWindowSkeleton
 
 	public FoodNoniconWindow(ColonyFoodData foodData, String resource, @Nullable BOWindow parent)
 	{
-		super(resource, parent);
+		super(resource, null);
 		this.colonyFoodData = foodData;
 		this.parent = parent;
 	}
@@ -161,6 +161,18 @@ public abstract class FoodNoniconWindow extends AbstractWindowSkeleton
 		var stautsLabel = row.findPaneOfTypeByID(TEXT_FOOD_STATUS, Text.class);
 		var complete = this.colonyFoodData.isCompletedFood(stack.getItem());
 		stautsLabel.setText(Component.translatable("minecolonies_sol.gui.ate_count", Component.literal(this.colonyFoodData.getEatenCitizens(stack.getItem()).size() + " / " + this.colonyFoodData.getCitizenCount()).withStyle(complete ? ChatFormatting.GREEN : ChatFormatting.WHITE)));
+	}
+
+	@Override
+	public void close()
+	{
+		if (this.parent != null)
+		{
+			this.parent.open();
+			return;
+		}
+
+		super.close();
 	}
 
 }

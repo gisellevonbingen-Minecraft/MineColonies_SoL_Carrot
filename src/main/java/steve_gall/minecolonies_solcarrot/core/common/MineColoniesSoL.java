@@ -8,12 +8,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import steve_gall.minecolonies_solcarrot.core.client.MineColoniesSoLClient;
 import steve_gall.minecolonies_solcarrot.core.common.command.ModCommands;
+import steve_gall.minecolonies_solcarrot.core.common.compat.TweaksCompat;
 import steve_gall.minecolonies_solcarrot.core.common.config.MineColoniesSoLConfigClient;
 import steve_gall.minecolonies_solcarrot.core.common.config.MineColoniesSoLConfigCommon;
 import steve_gall.minecolonies_solcarrot.core.common.config.MineColoniesSoLConfigServer;
@@ -37,6 +39,11 @@ public class MineColoniesSoL
 
 		var forge_bus = MinecraftForge.EVENT_BUS;
 		forge_bus.addListener((RegisterCommandsEvent e) -> ModCommands.register(e.getDispatcher()));
+
+		if (ModList.get().isLoaded("minecolonies_tweaks"))
+		{
+			new TweaksCompat();
+		}
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> MineColoniesSoLClient::new);
 	}
