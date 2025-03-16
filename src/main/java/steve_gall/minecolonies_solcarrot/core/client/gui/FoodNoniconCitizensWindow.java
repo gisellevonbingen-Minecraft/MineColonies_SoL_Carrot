@@ -186,7 +186,7 @@ public class FoodNoniconCitizensWindow extends FoodNoniconWindow
 
 		this.eatenFoods.sort(this::compareFood);
 		this.notEatenFoods.sort(this::compareFood);
-		
+
 		this.eatenFoodList.setScrollY(0.0D);
 		this.eatenFoodList.refreshElementPanes();
 		this.eatenFoodText.setText(Component.translatable("minecolonies_sol.gui.eaten_foods", this.eatenFoods.size(), allFoods.size()));
