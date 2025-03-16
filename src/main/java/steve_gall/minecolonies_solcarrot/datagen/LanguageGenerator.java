@@ -32,6 +32,9 @@ public class LanguageGenerator extends LanguageProvider
 		this.add("minecolonies_sol.gui.bonus_heart", "Bonus Hearts : %s");
 		this.add("minecolonies_sol.gui.except_completed_citizen", "Except Milestone Completed");
 		this.add("minecolonies_sol.gui.except_completed_food", "Except Everyone Ate");
+
+		this.add("minecolonies_sol.gui.completed_citizens", "Milestone Completeds: %1$s / %2$s");
+		this.add("minecolonies_sol.gui.least_ate_citizen", "Least Ate Citizen: %s");
 	}
 
 }

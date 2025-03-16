@@ -5,12 +5,14 @@
   "minecolonies_sol.gui.bonus_heart": "Bonus Hearts : %s",
   "minecolonies_sol.gui.citizens": "Citizens\n(%1$s / %2$s)",
   "minecolonies_sol.gui.citizens_mode": "Citizens View",
+  "minecolonies_sol.gui.completed_citizens": "Milestone Completeds: %1$s / %2$s",
   "minecolonies_sol.gui.eaten_count": "Eaten Count : %s",
   "minecolonies_sol.gui.eaten_foods": "Eaten Foods\n(%1$s / %2$s)",
   "minecolonies_sol.gui.except_completed_citizen": "Except Milestone Completed",
   "minecolonies_sol.gui.except_completed_food": "Except Everyone Ate",
   "minecolonies_sol.gui.foods": "Foods\n(%1$s / %2$s)",
   "minecolonies_sol.gui.foods_mode": "Foods View",
+  "minecolonies_sol.gui.least_ate_citizen": "Least Ate Citizen: %s",
   "minecolonies_sol.gui.not_ate_citizens": "Not Ate Citizens\n(%1$s / %2$s)",
   "minecolonies_sol.gui.not_eaten_foods": "Not Eaten Foods\n(%1$s / %2$s)"
 }
