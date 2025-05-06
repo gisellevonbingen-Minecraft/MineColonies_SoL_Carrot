@@ -110,9 +110,9 @@ public class FoodNomiconElement extends ResourceScrollBookElement
 			return;
 		}
 
-		this.getWorkerNameLabel(rowPane).setText(this.completed);
-		this.getDesc1Label(rowPane).setText(this.least);
-		this.getTooltip(rowPane).setText(this.tooltip);
+		this.getDesc1Label(rowPane).setText(this.completed);
+		this.getDesc2Label(rowPane).setText(this.least);
+		this.getTooltip2(rowPane).setText(this.tooltip);
 	}
 
 }
