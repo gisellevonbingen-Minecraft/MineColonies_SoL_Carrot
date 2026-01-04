@@ -15,6 +15,7 @@ import com.minecolonies.core.client.gui.AbstractWindowSkeleton;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import steve_gall.minecolonies_solcarrot.api.common.IMineColoniesSoLAPI;
 
@@ -48,9 +49,9 @@ public abstract class FoodNoniconWindow extends AbstractWindowSkeleton
 	protected final ColonyFoodData colonyFoodData;
 	protected final int maxCount = IMineColoniesSoLAPI.instance().getFoodCountForMaxBonus();
 
-	public FoodNoniconWindow(ColonyFoodData foodData, String resource, @Nullable BOWindow parent)
+	public FoodNoniconWindow(ColonyFoodData foodData, ResourceLocation resource, @Nullable BOWindow parent)
 	{
-		super(resource, parent);
+		super(null, resource);
 		this.colonyFoodData = foodData;
 		this.parent = parent;
 	}
@@ -161,6 +162,18 @@ public abstract class FoodNoniconWindow extends AbstractWindowSkeleton
 		var stautsLabel = row.findPaneOfTypeByID(TEXT_FOOD_STATUS, Text.class);
 		var complete = this.colonyFoodData.isCompletedFood(stack.getItem());
 		stautsLabel.setText(Component.translatable("minecolonies_sol.gui.ate_count", Component.literal(this.colonyFoodData.getEatenCitizens(stack.getItem()).size() + " / " + this.colonyFoodData.getCitizenCount()).withStyle(complete ? ChatFormatting.GREEN : ChatFormatting.WHITE)));
+	}
+
+	@Override
+	public void close()
+	{
+		if (this.parent != null)
+		{
+			this.parent.open();
+			return;
+		}
+
+		super.close();
 	}
 
 }

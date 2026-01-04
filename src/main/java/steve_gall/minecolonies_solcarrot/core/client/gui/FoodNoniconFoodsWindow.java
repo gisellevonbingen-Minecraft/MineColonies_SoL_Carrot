@@ -44,7 +44,7 @@ public class FoodNoniconFoodsWindow extends FoodNoniconWindow
 
 	public FoodNoniconFoodsWindow(ColonyFoodData foodData, @Nullable BOWindow parent)
 	{
-		super(foodData, MineColoniesSoL.rl("gui/foo_nomicon_foods_window.xml").toString(), parent);
+		super(foodData, MineColoniesSoL.rl("gui/foo_nomicon_foods_window.xml"), parent);
 
 		this.inputField = this.window.findPaneOfTypeByID(WindowConstants.INPUT_FILTER, TextField.class);
 		this.exceptCompletedButton = this.window.findPaneOfTypeByID(BUTTON_EXCEPT_COMPLETLED, Button.class);

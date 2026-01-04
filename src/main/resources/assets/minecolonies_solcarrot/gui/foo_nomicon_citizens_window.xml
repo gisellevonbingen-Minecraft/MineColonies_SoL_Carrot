@@ -4,12 +4,11 @@
 
 	<button id="citizensMode" size="80 24" pos="0 5"
 		source="minecolonies:textures/gui/builderhut/builder_button_medium.png"
-		label="$(minecolonies_sol.gui.citizens_mode)" textcolor="black"
+		label="$(minecolonies_sol.gui.citizens_mode)" color="black"
 		wrap="true" />
 	<button id="foodsMode" size="80 24" pos="85 5"
 		source="minecolonies:textures/gui/builderhut/builder_button_medium.png"
-		label="$(minecolonies_sol.gui.foods_mode)" textcolor="black"
-		wrap="true" />
+		label="$(minecolonies_sol.gui.foods_mode)" color="black" wrap="true" />
 
 	<input id="input" size="135 17" pos="1 31" maxlength="25" />
 
@@ -49,8 +48,8 @@
 						<itemicon id="foodIcon" size="16 16" pos="2 3" />
 						<text id="foodName" size="106 20" pos="20 2" color="white"
 							wrap="true" />
-						<text id="foodStatus" size="124 10" pos="2 20"
-							color="white" wrap="true" />
+						<text id="foodStatus" size="124 10" pos="2 20" color="white"
+							wrap="true" />
 					</box>
 				</list>
 			</box>
@@ -66,8 +65,8 @@
 						<itemicon id="foodIcon" size="16 16" pos="2 3" />
 						<text id="foodName" size="106 20" pos="20 2" color="white"
 							wrap="true" />
-						<text id="foodStatus" size="124 10" pos="2 20"
-							color="white" wrap="true" />
+						<text id="foodStatus" size="124 10" pos="2 20" color="white"
+							wrap="true" />
 					</box>
 				</list>
 			</box>

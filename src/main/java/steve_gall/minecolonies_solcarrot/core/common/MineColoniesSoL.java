@@ -7,6 +7,7 @@ import com.minecolonies.api.creativetab.ModCreativeTabs;
 
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.javafmlmod.FMLModContainer;
@@ -15,6 +16,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import steve_gall.minecolonies_solcarrot.core.client.MineColoniesSoLClient;
 import steve_gall.minecolonies_solcarrot.core.common.command.ModCommands;
+import steve_gall.minecolonies_solcarrot.core.common.compat.TweaksCompat;
 import steve_gall.minecolonies_solcarrot.core.common.config.MineColoniesSoLConfigClient;
 import steve_gall.minecolonies_solcarrot.core.common.config.MineColoniesSoLConfigCommon;
 import steve_gall.minecolonies_solcarrot.core.common.config.MineColoniesSoLConfigServer;
@@ -36,6 +38,11 @@ public class MineColoniesSoL
 		ModItems.REGISTER.register(fml_bus);
 		fml_bus.addListener(this::onBuildCreativeModeTabContents);
 
+		if (ModList.get().isLoaded("minecolonies_tweaks"))
+		{
+			new TweaksCompat();
+		}
+		
 		var forge_bus = NeoForge.EVENT_BUS;
 		forge_bus.addListener((RegisterCommandsEvent e) -> ModCommands.register(e.getDispatcher()));
 
