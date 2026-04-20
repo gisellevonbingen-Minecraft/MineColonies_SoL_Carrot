@@ -14,5 +14,10 @@
   "minecolonies_sol.gui.foods_mode": "Foods View",
   "minecolonies_sol.gui.least_ate_citizen": "Least Ate Citizen: %s",
   "minecolonies_sol.gui.not_ate_citizens": "Not Ate Citizens\n(%1$s / %2$s)",
-  "minecolonies_sol.gui.not_eaten_foods": "Not Eaten Foods\n(%1$s / %2$s)"
+  "minecolonies_sol.gui.not_eaten_foods": "Not Eaten Foods\n(%1$s / %2$s)",
+  "minecolonies_sol.text.colony_missing": "Missing",
+  "minecolonies_sol.text.how_to_link": "Sneak+Use: Link with colony",
+  "minecolonies_sol.text.linked": "Linked.",
+  "minecolonies_sol.text.linked_colony": "Linked Colony: %s",
+  "minecolonies_sol.text.missing_colony": "Linked colony is missing."
 }

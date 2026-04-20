@@ -35,6 +35,12 @@ public class LanguageGenerator extends LanguageProvider
 
 		this.add("minecolonies_sol.gui.completed_citizens", "Milestone Completeds: %1$s / %2$s");
 		this.add("minecolonies_sol.gui.least_ate_citizen", "Least Ate Citizen: %s");
+
+		this.add("minecolonies_sol.text.how_to_link", "Sneak+Use: Link with colony");
+		this.add("minecolonies_sol.text.missing_colony", "Linked colony is missing.");
+		this.add("minecolonies_sol.text.colony_missing", "Missing");
+		this.add("minecolonies_sol.text.linked", "Linked.");
+		this.add("minecolonies_sol.text.linked_colony", "Linked Colony: %s");
 	}
 
 }
