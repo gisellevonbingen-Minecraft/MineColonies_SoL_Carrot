@@ -68,7 +68,7 @@ public class FoodNomiconElement extends ResourceScrollBookElement
 		{
 			this.valid = false;
 			this.food = null;
-			this.completed = EMPTY;
+			this.completed = COLONY_NOT_SETTED;
 			this.least = EMPTY;
 			this.tooltip = EMPTY;
 			return;
