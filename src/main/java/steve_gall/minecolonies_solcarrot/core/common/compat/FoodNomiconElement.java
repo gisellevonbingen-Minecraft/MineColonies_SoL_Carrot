@@ -5,16 +5,16 @@ import org.jetbrains.annotations.NotNull;
 import com.ldtteam.blockui.BOScreen;
 import com.ldtteam.blockui.Pane;
 import com.ldtteam.blockui.views.BOWindow;
-import com.minecolonies.api.IMinecoloniesAPI;
-import com.minecolonies.api.colony.IColonyView;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
+import steve_gall.minecolonies_solcarrot.api.common.ColonyId;
 import steve_gall.minecolonies_solcarrot.api.common.IMineColoniesSoLAPI;
 import steve_gall.minecolonies_solcarrot.api.common.colony.ICitizenFoodDataView;
 import steve_gall.minecolonies_solcarrot.core.client.gui.ColonyFoodData;
 import steve_gall.minecolonies_solcarrot.core.client.gui.FoodNoniconCitizensWindow;
+import steve_gall.minecolonies_solcarrot.core.common.item.FoodNomiconItem;
 import steve_gall.minecolonies_tweaks.api.client.gui.ResourceScrollBookElement;
 
 public class FoodNomiconElement extends ResourceScrollBookElement
@@ -55,15 +55,16 @@ public class FoodNomiconElement extends ResourceScrollBookElement
 	{
 		super.update();
 
-		var mc = Minecraft.getInstance();
-		var colony = IMinecoloniesAPI.getInstance().getColonyManager().getIColonyByOwner(mc.level, mc.player);
+		ColonyId colonyId = null;
 
-		if (colony instanceof IColonyView view)
+		if (this.stack.getItem() instanceof FoodNomiconItem item)
 		{
-			this.valid = true;
-			this.food = new ColonyFoodData(view);
+			colonyId = item.getColonyId(this.stack);
 		}
-		else
+
+		var view = colonyId == null ? null : colonyId.getColonyView();
+
+		if (view == null)
 		{
 			this.valid = false;
 			this.food = null;
@@ -71,6 +72,11 @@ public class FoodNomiconElement extends ResourceScrollBookElement
 			this.least = EMPTY;
 			this.tooltip = EMPTY;
 			return;
+		}
+		else
+		{
+			this.valid = true;
+			this.food = new ColonyFoodData(view);
 		}
 
 		var count = 0;
